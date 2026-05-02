@@ -15,5 +15,5 @@ En este diseño se han implementado los siguientes conceptos de Programación Or
 
 ## 🚀 Tecnologías Utilizadas
 * **Lenguaje:** Java 
-* **IDE:** NetBeans / Eclipse
+* **IDE:** Eclipse
 * **Modelado:** UML (draw.io)
