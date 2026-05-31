@@ -1,33 +1,65 @@
-/**
- * Class SerieDeTV
- */
 package uni1a;
 
-// Subclase SerieDeTV que extiende de ContenidoAudiovisual
-public class SerieDeTV extends ContenidoAudiovisual {
-    private int temporadas;
+import java.util.ArrayList;
+import java.util.List;
 
-    public SerieDeTV(String titulo, int duracionEnMinutos, String genero, int temporadas) {
+/**
+ * Subclase SerieDeTV que extiende de ContenidoAudiovisual
+ */
+public class SerieDeTV extends ContenidoAudiovisual {
+
+    private int numeroTemporadas;
+    private List<Temporada> temporadas;   // Relación de Composición con Temporada
+
+    public SerieDeTV(String titulo, int duracionEnMinutos, String genero, int numeroTemporadas) {
         super(titulo, duracionEnMinutos, genero);
-        this.temporadas = temporadas;
+        this.numeroTemporadas = numeroTemporadas;
+        this.temporadas = new ArrayList<>();   // Inicializamos la lista
     }
 
-    public int getTemporadas() {
+    // Getter y Setter
+    public int getNumeroTemporadas() {
+        return numeroTemporadas;
+    }
+
+    public void setNumeroTemporadas(int numeroTemporadas) {
+        this.numeroTemporadas = numeroTemporadas;
+    }
+
+    // ====================== RELACIÓN CON TEMPORADA ======================
+
+    /**
+     * Agrega una temporada a la serie
+     */
+    public void agregarTemporada(Temporada temporada) {
+        if (temporada != null) {
+            this.temporadas.add(temporada);
+        }
+    }
+
+    public List<Temporada> getTemporadas() {
         return temporadas;
     }
 
-    public void setTemporadas(int temporadas) {
-        this.temporadas = temporadas;
+    /**
+     * Muestra las temporadas de la serie
+     */
+    public void mostrarTemporadas() {
+        System.out.println("Temporadas de la serie '" + getTitulo() + "':");
+        if (temporadas.isEmpty()) {
+            System.out.println("  No hay temporadas registradas.");
+        } else {
+            for (Temporada temp : temporadas) {
+                System.out.println("  - " + temp);
+            }
+        }
     }
-    
+
     @Override
     public void mostrarDetalles() {
-        System.out.println("Detalles de la película:");
-        System.out.println("ID: " + getId());
-        System.out.println("Título: " + getTitulo());
-        System.out.println("Duración en minutos: " + getDuracionEnMinutos());
-        System.out.println("Género: " + getGenero());
-        System.out.println("Temporadas: " + this.temporadas);
-        System.out.println();
+        super.mostrarDetalles();
+        System.out.println("Número de temporadas: " + numeroTemporadas);
+        mostrarTemporadas();
+        System.out.println("-------------------------------");
     }
 }
